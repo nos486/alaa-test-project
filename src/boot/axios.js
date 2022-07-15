@@ -5,7 +5,8 @@ import {Notify} from 'quasar'
 export default ({Vue, store, route, app}) => {
   axios.defaults.withCredentials = false;
   axios.interceptors.request.use((config) => {
-    config.baseURL = 'https://alaatv.com/api/v2/'
+    // config.baseURL = 'https://alaatv.com/api/v2/'
+    config.url =  "/api" + config.url
     if (store.getters["userService/accessToken"] !== "") {
       config.headers["Authorization"] = `Bearer ${store.getters["userService/accessToken"]}`
     }

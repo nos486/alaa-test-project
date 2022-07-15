@@ -75,6 +75,16 @@ module.exports = function (/* ctx */) {
 
     // Full list of options: https://v1.quasar.dev/quasar-cli/quasar-conf-js#Property%3A-devServer
     devServer: {
+      proxy: {
+        // proxy all requests starting with /api to jsonplaceholder
+        '/api': {
+          target: 'https://alaatv.com',
+          changeOrigin: true,
+          pathRewrite: {
+            '^/api': '/api/v2'
+          }
+        }
+      },
       https: false,
       port: 8080,
       open: true // opens browser window automatically
@@ -113,6 +123,7 @@ module.exports = function (/* ctx */) {
     ssr: {
       pwa: false
     },
+
 
     // https://v1.quasar.dev/quasar-cli/developing-pwa/configuring-pwa
     pwa: {
